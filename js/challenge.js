@@ -6,7 +6,7 @@ let i = 0
 let counter = document.querySelector('#counter');
 
 function increment() {
-counter.innerText = i++
+counter.innerText = ++i
 };
 
 let intervalCounter = setInterval(increment, 1000);
@@ -27,22 +27,30 @@ let minusButton = document.querySelector('#minus').addEventListener('click', (e 
 
 
 //Like a number on the counter
-//When the ❤️ button is clicked, create a <li> and append text into it, then push that onto the DOM
-let heartButton = document.querySelector('#heart').addEventListener('click', e => commentWork())
-let likeClickQuantity = 0
-function commentWork() {
-  //let likeClickQuantity = 0
-  let likeCounter = document.querySelector('#heart').addEventListener('click', e => likeClickQuantity = ++likeClickQuantity)
-  console.log(likeClickQuantity)
+let likeClick = document.querySelector('#heart').addEventListener('click', e => {
+  likeClickIncrementer()
+  commentLikes()
+});
+
+let likeClickQuantity = 1
+
+function commentLikes() {
   let likeComment = document.querySelector('.Comments') //Selected the comments area on the page
-  let LikeLi = document.createElement('li');    //Create the list element
-  let liText = document.createTextNode(`${i} has been liked ${likeClickQuantity} times`) //Create the text
-  LikeLi.appendChild(liText);   //Push text into list
-  likeComment.appendChild(LikeLi); //Push list into comments area
+  let likeList = document.createElement('li');    //Create the list element
+  let listText = document.createTextNode(`${i} has been liked ${likeClickQuantity} times`) //Create the text
+  likeList.appendChild(listText);   //Push text into list
+  likeComment.appendChild(likeList); //Push list into comments area
 };
 
 
 
+
+function likeClickIncrementer() {
+  document.querySelector('#heart').addEventListener('click', e => {
+    likeClickQuantity = ++likeClickQuantity
+//    console.log(likeClickQuantity)
+  })
+};
 
 //I should see the count of the number of 'likes' associated with that number displayed.
 //
